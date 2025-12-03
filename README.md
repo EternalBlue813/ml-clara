@@ -8,6 +8,7 @@ This software project accompanies the research paper, **CLaRa: Bridging Retrieva
 ### Updates
 
 - Nov 25, 2025. Models are available on Huggingface.
+- Dec 3, 2025. Evaluation data are available in `./evaluation/evaluation_data`.
 
 ### Motivation
 
