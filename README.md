@@ -81,6 +81,8 @@ In this repository, we release our implementation of **CLaRa**, built upon [Open
 └── README.md                     # This file
 ```
 
+Video instruction for installation (from @Fahd Mirza): https://youtu.be/al2VoAKn8GU?si=Q8bq7QNMaTvcArwa
+
 #### 1. Prepare code and environment
 
 Clone the repository and set up the environment:
