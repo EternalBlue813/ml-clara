@@ -17,7 +17,7 @@ This is the official open-source release of CLaRa, a state-of-the-art, end-to-en
 
 ### Updates
 
-- Dec 11, 2025. All used data are available on Huggingface. 
+- Dec 11, 2025. All used data are available on [Huggingface](https://huggingface.co/datasets/apple/CLaRa_multi_stage). 
 - Dec 10, 2025. We are working on an MLX version of the model, to be announced soon.
 - Dec 3, 2025. Evaluation data are available in `./evaluation/evaluation_data`.
 - Nov 25, 2025. Models are available on Huggingface.
