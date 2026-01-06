@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 export default function Home() {
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>('idle'); // idle, uploading, processing, ready
   const [logs, setLogs] = useState<string[]>([]);
   const [messages, setMessages] = useState<{ role: 'user' | 'bot', text: string }[]>([]);
@@ -127,6 +127,16 @@ export default function Home() {
       .catch(() => setDbCount(0));
   }, []);
 
+  const addLog = (message: string) => {
+    setLogs(prev => [...prev, message]);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const handleFlush = async () => {
     if (window.confirm("Are you sure you want to remove the current knowledge base? This action cannot be undone.")) {
       try {
@@ -169,7 +179,7 @@ export default function Home() {
       const processRes = await fetch('http://localhost:8000/process', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename: uploadData.filename })
+        body: JSON.stringify({ filenames: [uploadData.filename] })
       });
 
       if (!processRes.ok) throw new Error('Processing failed');

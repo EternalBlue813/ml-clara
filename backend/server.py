@@ -34,8 +34,11 @@ CHECKPOINT_DIR = os.path.join(BASE_DIR, "checkpoints")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 
+# Knowledge Base file path
+KB_FILE = os.path.join(DATA_DIR, "pretrain_data.jsonl")
+
 class ProcessRequest(BaseModel):
-    filename: str
+    filenames: List[str]
 
 from openai import OpenAI
 
