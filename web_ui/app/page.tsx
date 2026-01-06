@@ -121,7 +121,7 @@ export default function Home() {
 
   // fetch stats on load
   useEffect(() => {
-    fetch('http://localhost:8000/db_status')
+    fetch('/api/db_status')
       .then(res => res.json())
       .then(data => setDbCount(data.count))
       .catch(() => setDbCount(0));
@@ -140,7 +140,7 @@ export default function Home() {
   const handleFlush = async () => {
     if (window.confirm("Are you sure you want to remove the current knowledge base? This action cannot be undone.")) {
       try {
-        const res = await fetch('http://localhost:8000/flush', { method: 'POST' });
+        const res = await fetch('/api/flush', { method: 'POST' });
         if (res.ok) {
           setDbCount(0);
           addLog('Knowledge Base Flushed.');
@@ -164,7 +164,7 @@ export default function Home() {
 
     try {
       // Upload
-      const uploadRes = await fetch('http://localhost:8000/upload', {
+      const uploadRes = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
@@ -176,7 +176,7 @@ export default function Home() {
       addLog('Step 1: Analyzing & Appending to Knowledge Base...');
 
       // Process
-      const processRes = await fetch('http://localhost:8000/process', {
+      const processRes = await fetch('/api/process', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ filenames: [uploadData.filename] })
@@ -193,7 +193,7 @@ export default function Home() {
       setStatus('ready');
 
       // Update stats
-      const statsRes = await fetch('http://localhost:8000/db_status');
+      const statsRes = await fetch('/api/db_status');
       const stats = await statsRes.json();
       setDbCount(stats.count);
 
@@ -212,7 +212,7 @@ export default function Home() {
     setInput('');
 
     try {
-      const res = await fetch('http://localhost:8000/chat', {
+      const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMsg, api_key: apiKey })
